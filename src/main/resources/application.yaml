@@ -5,7 +5,7 @@ logging:
   level:
     com.web.board: debug
     org.springframework.web.servlet: debug
-    # spring boot 2.x, hibernate 5.x ?? ??? ??
+    # spring boot 2.x, hibernate 5.x 에서 가능한 설정
     # org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.hibernate.orm.jdbc.bind: TRACE
 
@@ -22,10 +22,28 @@ spring:
     properties:
       hibernate.format_sql: true
       hibernate.hibernate.default_batch_fetch_size: 100
-#  h2.console.enabled: true
+  #  h2.console.enabled: true
   sql.init.mode: always
   data.rest:
     base-path: /api
     detection-strategy: annotated
   thymeleaf3:
     decoupled-logic: true
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            # 앱 키 > REST API 키
+            client-id: ${KAKAO_OAUTH_CLIENT_ID}
+            # 카카오 로그인 > 보안 > Client Secret
+            client-secret: ${KAKAO_OAUTH_CLIENT_SECRET}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/kakao"
+            client-authentication-method: client_secret_post
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id

@@ -8,7 +8,7 @@ import lombok.ToString;
 import java.util.Objects;
 
 @Getter
-@ToString
+@ToString(callSuper = true)
 @Table(indexes = {
         @Index(columnList = "email", unique = true),
         @Index(columnList = "createdAt"),
@@ -38,16 +38,24 @@ public class UserAccount extends AuditingFields {
 
     protected UserAccount() {}
 
-    private UserAccount(String userId, String userPassword, String email, String nickname, String memo) {
+    private UserAccount(String userId, String userPassword, String email, String nickname, String memo, String createdBy) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.email = email;
         this.nickname = nickname;
         this.memo = memo;
+        // 생성시, 즉 인서트하는 최초 시점에서는 생성자와 수정자는 같다.
+        this.createdBy = createdBy;
+        this.modifiedBy = createdBy;
     }
 
     public static UserAccount of(String userId, String userPassword, String email, String nickname, String memo) {
-        return new UserAccount(userId, userPassword, email, nickname, memo);
+        return new UserAccount(userId, userPassword, email, nickname, memo, null);
+    }
+
+    public static UserAccount of(String userId, String userPassword, String email, String nickname, String memo, String createdBy) {
+        // EX: 회원 가입을 최초로 해서 인증 정보가 없을 때 사용
+        return new UserAccount(userId, userPassword, email, nickname, memo, createdBy);
     }
 
     @Override
