@@ -16,16 +16,25 @@ import java.util.Objects;
 })
 @Entity
 public class UserAccount extends AuditingFields {
+
     @Id
     @Column(length = 50)
     private String userId;
 
-    @Setter @Column(nullable = false) private String userPassword;
+    @Setter
+    @Column(nullable = false)
+    private String userPassword;
 
-    @Setter @Column(length = 100) private String email;
-    @Setter @Column(length = 100) private String nickname;
-    @Setter private String memo;
+    @Setter
+    @Column(length = 100)
+    private String email;
 
+    @Setter
+    @Column(length = 100)
+    private String nickname;
+
+    @Setter
+    private String memo;
 
     protected UserAccount() {}
 
@@ -48,7 +57,6 @@ public class UserAccount extends AuditingFields {
         return this.getUserId() != null && this.getUserId().equals(that.getUserId());
     }
 
-    
     @Override
     public int hashCode() {
         return Objects.hash(this.getUserId());
