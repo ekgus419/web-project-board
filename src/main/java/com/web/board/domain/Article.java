@@ -23,12 +23,21 @@ public class Article extends AuditingFields {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter @ManyToOne(optional = false) @JoinColumn(name = "userId") private UserAccount userAccount; // 유저 정보 (ID)
+    @Setter
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "userId")
+    private UserAccount userAccount; // 유저 정보 (ID)
 
-    @Setter @Column(nullable = false) private String title; // 제목
-    @Setter @Column(nullable = false, length = 10000) private String content; // 본문
+    @Setter
+    @Column(nullable = false)
+    private String title; // 제목
 
-    @Setter private String hashtag; // 해시태그
+    @Setter
+    @Column(nullable = false, length = 10000)
+    private String content; // 본문
+
+    @Setter
+    private String hashtag; // 해시태그
 
     @ToString.Exclude
     @OrderBy("createdAt DESC")
@@ -52,13 +61,13 @@ public class Article extends AuditingFields {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Article article)) return false;
-        return id != null && id.equals(article.id);
+        if (!(o instanceof Article that)) return false;
+        return this.getId() != null && this.getId().equals(that.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(this.getId());
     }
 
 }
