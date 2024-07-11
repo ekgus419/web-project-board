@@ -11,6 +11,7 @@ logging:
 
 spring:
   datasource:
+    # Environment variables
     url: ${LOCAL_DB_URL}
     username: ${LOCAL_DB_USERNAME}
     password: ${LOCAL_DB_PASSWORD}
@@ -30,6 +31,9 @@ spring:
   thymeleaf3:
     decoupled-logic: true
   security:
+    # Override configuration properties
+    # spring.security.oauth2.client.registration.kakao.client-id
+    # spring.security.oauth2.client.registration.kakao.client-secret
     oauth2:
       client:
         registration:
