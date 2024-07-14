@@ -2,6 +2,7 @@ package com.web.board.repository;
 
 import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
+import com.web.board.controller.projection.ArticleCommentProjection;
 import com.web.board.domain.Article;
 import com.web.board.domain.ArticleComment;
 import com.web.board.domain.QArticle;
@@ -14,7 +15,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource
+@RepositoryRestResource(excerptProjection = ArticleCommentProjection.class)
 public interface ArticleCommentRepository extends
         JpaRepository<ArticleComment, Long>,
         /* ArticleComment 엔티티에 있는 기본 검색 기능 추가해줌 */
