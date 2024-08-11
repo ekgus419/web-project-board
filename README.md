@@ -33,6 +33,30 @@ Spring Boot
 * QueryDSL 5.0.0
 * Bootstrap 5.2.0-Beta1
 * Heroku
-* 유즈케이스 다이어그램: [#4](https://github.com/djkeh/fastcampus-project-board/issues/4), https://viewer.diagrams.net/#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fdjkeh%2Ffastcampus-project-board%2Fmain%2Fdocument%2Fuse-case.svg
-* API Endpoint 구글 시트: [#1](https://github.com/djkeh/fastcampus-project-board/issues/1), https://docs.google.com/spreadsheets/d/1S2FW7_LlePGF95strSYFJEsEQKoyZ9nGHWM8wZgFmSU/edit?usp=sharing
-* 어드민 서비스: https://github.com/ekgus419/web-project-board-admin
+* 유즈케이스 다이어그램
+![usecase](https://github.com/user-attachments/assets/9fee3d37-cf9c-4421-97b9-0a05c677e224)
+
+| 종류   | uri                                             | method       | 기능                     | 설명                                      |
+|--------|-------------------------------------------------|--------------|--------------------------|-------------------------------------------|
+| 뷰     | /                                               | GET          | 루트 페이지              | 게시판 페이지로 이동                      |
+|        | /error                                          | GET          | 에러 페이지              |                                           |
+|        | /login                                          | GET          | 로그인 페이지            |                                           |
+|        | /sign-up                                        | GET          | 회원 가입 페이지         |                                           |
+|        | /articles                                       | GET          | 게시판 페이지            |                                           |
+|        | /articles/{article-id}                          | GET          | 게시글 페이지            |                                           |
+|        | /articles/search                                | GET          | 게시판 검색 전용 페이지  |                                           |
+|        | /articles/search-hashtag                        | GET          | 게시판 해시태그 검색 전용 페이지 |                                           |
+| api    | /api/sign-up                                    | POST         | 회원 가입                |                                           |
+|        | /api/login                                      | GET          | 로그인 요청              |                                           |
+|        | /api/articles                                   | GET          | 게시글 리스트 조회       |                                           |
+|        | /api/articles/{article-id}                      | GET          | 게시글 단일 조회         |                                           |
+|        | /api/articles                                   | POST         | 게시글 추가              |                                           |
+|        | /api/articles/{article-id}                      | PUT, PATCH   | 게시글 수정              |                                           |
+|        | /api/articles/{article-id}                      | DELETE       | 게시글 삭제              |                                           |
+|        | /api/articleComments                            | GET          | 댓글 리스트 조회         |                                           |
+|        | /api/articleComments/{article-comment-id}       | GET          | 댓글 단일 조회           |                                           |
+|        | /api/articles/{article-id}/articleComments      | GET          | 게시글에 연관된 댓글 리스트 조회 |                                           |
+|        | /api/articles/{article-id}/articleComments/{article-comment-id} | GET | 게시글에 연관된 댓글 단일 조회 |                                           |
+|        | /api/articles/{article-id}/articleComments      | POST         | 댓글 등록                |                                           |
+|        | /api/articles/{article-id}/articleComments/{article-comment-id} | PUT, PATCH | 댓글 수정              |                                           |
+|        | /api/articles/{article-id}/articleComments/{article-comment-id} | DELETE | 댓글 삭제              |                                           |
